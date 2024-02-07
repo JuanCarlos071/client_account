@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import hashlib
 # Create your models here.
 
 class LoginHistory(models.Model):
@@ -14,3 +14,9 @@ class UserProfile(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=100)
     mobile_number = models.CharField(max_length=15)
+
+    def check_password(self, plain_password):
+        # Hash the plain-text password using the same algorithm used during registration
+        hashed_password = hashlib.sha256(plain_password.encode()).hexdigest()
+        # Compare the hashed password with the stored hashed password
+        return hashed_password == self.password, hashed_password
