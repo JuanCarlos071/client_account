@@ -33,10 +33,11 @@
                                     <p class="text-muted mb-0">Sign in to continue to Frogetor.</p>
                                 </div>
                             </div>                            
-                            
+                            <!-- form --------------------- -->
                             <form class="form-horizontal my-4" method="POST" action="{% url 'login_view' %}" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                {% for field in form %}
+                                
+                                <!-- {% for field in form %}
                                     {% if field.errors %}
                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -48,14 +49,27 @@
                                             
                                         </div>
                                     {% endif %}
-                                {% endfor %}
+                                {% endfor %} -->
+                                
+                                {% if messages %}
+                                    {% for msg in messages %} 
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                                        </button>
+                                        {{ msg }}
+                                        
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
+                                        <input type="text" class="form-control" name="username" placeholder="Enter username">
                                     </div>                                    
                                 </div>
     
@@ -65,14 +79,14 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-key font-16"></i></span>
                                         </div>
-                                        <input type="password" class="form-control" name="password" id="userpassword" placeholder="Enter password">
+                                        <input type="password" class="form-control" name="password" placeholder="Enter password">
                                     </div>                                
                                 </div>
     
                                 <div class="form-group row mt-4">
                                     <div class="col-sm-6">
                                         <div class="custom-control custom-checkbox">
-                                            <input name="remember_me" type="checkbox" class="custom-control-input" id="customControlInline">
+                                            <input name="remember_me" type="checkbox" class="custom-control-input">
                                             <label class="custom-control-label" for="customControlInline">Remember me</label>
                                         </div>
                                     </div>
@@ -87,6 +101,8 @@
                                     </div>
                                 </div>                            
                             </form>
+                            <!-- end form --------------------- -->
+
                         </div>
 
                         <div class="m-3 text-center bg-light p-3 text-primary">
