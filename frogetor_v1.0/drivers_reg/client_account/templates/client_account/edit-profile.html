@@ -74,15 +74,53 @@
                                     <form action="" method="POST">
 
                                         {% csrf_token %}
-                                        {{ user_form }}
+                                        <div class="form-group">
+                                            <label for="username">{{ user_form.username.label_tag }}</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
+                                                </div>
+                                                {{ user_form.username }}
+                                            </div>                                    
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="username">{{ user_form.first_name.label_tag }}</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
+                                                </div>
+                                                {{ user_form.first_name }}
+                                            </div>                                    
+                                        </div>
+        
+                                        <div class="form-group">
+                                            <label for="username">{{ user_form.last_name.label_tag }}</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
+                                                </div>
+                                                {{ user_form.last_name }}
+                                            </div>                                    
+                                        </div>
+        
+                                        <div class="form-group">
+                                            <label for="username">{{ user_form.email.label_tag }}</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-email-outline font-16"></i></span>
+                                                </div>
+                                                {{ user_form.email }}
+                                            </div>                                    
+                                        </div>
                                         <br>
-                                        <button class="btn btn-secondary"> Update profile</button>
+                                        <button class="btn btn-outline-success waves-effect waves-light"> Update profile</button>
 
                                     </form>
 
                                     <br>
-
-                                    <a href="{% url 'edit_password' %}" class="btn btn-success"> Update Password</a>
+                                    <p class="text-muted mb-4">Do you want to update your password?, click the botton below.</p>
+                                    <a href="{% url 'edit_password' %}" class="btn btn-outline-purple waves-effect waves-light"> Update Password</a>
                                     <!-- <form class="form-horizontal form-material mb-0">
                                         <div class="form-group">
                                             <input type="text" placeholder="Full Name" class="form-control">
