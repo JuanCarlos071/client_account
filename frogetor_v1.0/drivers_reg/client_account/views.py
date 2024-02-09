@@ -3,9 +3,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, UpdateForm, UpdatePasswordForm
+
 # Create your views here.
 def pageStart(request):
-    return render(request, 'client_account/page_start.html')
+    """
+    """
+    if request.user.is_authenticated:
+        return render(request, 'client_account/page_start.html')
+    else:
+        messages.success(request, "U must be loged in")
+        return redirect('login_view')
 
 # Login view
 def login_view(request):
@@ -61,7 +68,6 @@ def edit_profile(request):
         user_form = UpdateForm(request.POST or None, instance=current_user)
         if user_form.is_valid():
             user_form.save()
-
             login(request, current_user)
             messages.success(request, "User has been Updated!!!")
             return redirect('pageStart')
@@ -72,22 +78,31 @@ def edit_profile(request):
         return redirect('login_view')
       
 def edit_password(request):
+    # we ned to make sure that the user is authenticated aka logged in
     if request.user.is_authenticated:
         current_user = request.user
         # did they fill out the form ?
         if request.method == 'POST':
-            # do stuff
-            pass
+            # grap the form
+            form = UpdatePasswordForm(current_user, request.POST)
+            # check if the form is valid
+            if form.is_valid():
+                # then save
+                form.save()
+                # then print a successful messege in the nex web page --> log in!
+                messages.success(request, "Your Password Has been Updated, you need to log in ")
+                return redirect('login_view')
+            else:
+                # pass the django authentication errors
+                for error in list(form.errors.values()):
+                    messages.error(request, error)
+                return render(request, 'client_account/edit-password.html', {'form':form})
         else:
             form = UpdatePasswordForm(current_user)
             return render(request, 'client_account/edit-password.html', {'form':form})
     else:
         messages.success(request, "You must be logged in")
         return redirect('login_view')
-         
-    return render(request, 'client_account/edit-password.html', {})
-      
-    
       
 
 def error_404(request, exception=None):
