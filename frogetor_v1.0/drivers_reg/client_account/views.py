@@ -105,6 +105,11 @@ def edit_password(request):
         return redirect('login_view')
       
 
+
+def credential_form(request):
+     
+    return render(request, 'form/credential-form.html')
+
 def error_404(request, exception=None):
         data = {}
         return render(request,'auth/auth-404.html', data)
