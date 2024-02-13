@@ -1,0 +1,61 @@
+{
+  "user": {
+    "id": 8882,
+    "first_name": "Petter1",
+    "username": "petter1",
+    "phone_number": "123123",
+    "pwd": "1234",
+    "roles": 1,
+    "data": {
+      "dpidx": [
+        5313
+      ],
+      "operator_nbr": "asd",
+      "license_nbr": "asd",
+      "device_ids": [],
+      "phone": {
+        "sip_account": {
+          "port": "",
+          "proxy": "",
+          "domain": "",
+          "register_expires": "",
+          "user": ""
+        },
+        "active": 1,
+        "options": {
+          "dispatch": {
+            "callid_replace": "",
+            "callid_match": "",
+            "populate": "answer",
+            "force_transfer": 0,
+            "clr_job_counts": 0,
+            "clr_job_extra": 0,
+            "version": "default"
+          }
+        }
+      },
+      "address": "asd",
+      "dispatch": {
+        "ip_addresses": [],
+        "groups": []
+      },
+      "note": "asd"
+    },
+    "last_name": "Andersson",
+    "avatar": "66411e70917d03b893e189aae1a31aa4fbd44dd0",
+    "vid": 0,
+    "cid": 8179,
+    "options": {
+      "perms": [
+        {
+          "r": 1,
+          "l": 0
+        },
+        {
+          "r": 2,
+          "l": 0
+        }
+      ]
+    }
+  }
+}
