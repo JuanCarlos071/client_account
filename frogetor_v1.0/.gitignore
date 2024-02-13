@@ -1,6 +1,6 @@
 # Ignore these directories
-.\drivers_reg\client_account\__pycache__
-.\drivers_reg\drivers_reg\__pycache__
-.\drivers_reg\__pycache__
-.\tst
-.\worked
+./drivers_reg/client_account/__pycache__/
+./drivers_reg/drivers_reg/__pycache__/
+./drivers_reg/__pycache__/
+./tst
+./worked
