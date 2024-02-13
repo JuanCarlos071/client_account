@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 class UpdatePasswordForm(SetPasswordForm):
@@ -59,3 +60,8 @@ class UpdateForm(UserChangeForm):
 		super(UpdateForm, self).__init__(*args, **kwargs)
 
 		self.fields['username'].widget.attrs['class'] = 'form-control'
+
+class ProfilePicUpdateForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = ['image']

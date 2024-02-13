@@ -10,15 +10,29 @@
                     <div class="row">
                         <div class="col-lg-4 mb-3 mb-lg-0">
                             <div class="fro_profile-main">
+
                                 <div class="fro_profile-main-pic">
-                                    <img src="assets/images/users/user-4.jpg" alt="" class="rounded-circle">
-                                    <span class="fro-profile_main-pic-change">
+                                    <img src="{{ user.profile.image.url }}" style="width: 100px; height: 100px;" alt="" class="rounded-circle">
+                                    <!-- <span class="fro-profile_main-pic-change">
                                         <i class="fas fa-camera"></i>
-                                    </span>
+                                    </span> -->
                                 </div>
-                                <div class="fro_profile_user-detail">
-                                    <h5 class="fro_user-name">{{user.first_name}} {{user.last_name}}</h5>
+                                <div class="col-md-6">
+                                    <div class="fro_profile_user-detail">
+                                        <h5 class="fro_user-name">{{user.first_name}} {{user.last_name}}</h5>
+                                    </div>
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <fieldset class="form-group">
+                                            {{ p_form }}
+                                        </fieldset>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-outline-purple btn-round waves-effect waves-light"><i class="mdi dripicons-camera mr-2"></i>Update picture</button>
+                                            <!-- <button class="btn btn-outline-info" type="submit">Update</button> -->
+                                        </div>
+                                    </form>
                                 </div>
+                                    
                             </div>
                         </div><!--end col-->
 
@@ -78,7 +92,7 @@
                                             <label for="username">{{ user_form.username.label_tag }}</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
+                                                    <span class="input-group-text" id="basic-addon1" ><i class="mdi mdi-account-outline font-16"></i></span>
                                                 </div>
                                                 {{ user_form.username }}
                                             </div>                                    

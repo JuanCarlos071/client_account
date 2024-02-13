@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import RegistrationForm, UpdateForm, UpdatePasswordForm
+from .forms import RegistrationForm, UpdateForm, UpdatePasswordForm, ProfilePicUpdateForm
 
 # Create your views here.
 def pageStart(request):
@@ -71,12 +71,27 @@ def edit_profile(request):
             login(request, current_user)
             messages.success(request, "User has been Updated!!!")
             return redirect('pageStart')
-        return render(request, 'client_account/edit-profile.html', {'user_form':user_form})
+        return render(request, 'client_account/edit-profile.html', {'user_form': user_form})
     
     else:
         messages.success(request, "U must be loged in")
         return redirect('login_view')
-      
+    
+
+def update_profile_pic(request):
+    if request.method == 'POST':
+        p_form = ProfilePicUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('profile')
+    else:
+        p_form = ProfilePicUpdateForm(instance=request.user.profile)
+
+
+    return render(request, 'client_account/edit-profile.html', {'p_form': p_form})
+
+
 def edit_password(request):
     # we ned to make sure that the user is authenticated aka logged in
     if request.user.is_authenticated:
@@ -107,7 +122,7 @@ def edit_password(request):
 
 
 def credential_form(request):
-     
+    # make request http for API
     return render(request, 'form/credential-form.html')
 
 def error_404(request, exception=None):
